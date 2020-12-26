@@ -36,4 +36,4 @@ import plotly.graph_objects as go # making a chart
 ```
 
 ## Demo
-![](Analyst Rating GIF Demo Original.gif)
+![](Analyst-Rating-GIF-Demo-Original.gif)
