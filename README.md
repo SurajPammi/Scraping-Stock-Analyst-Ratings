@@ -6,6 +6,11 @@ Analyst ratings can be used in trading strategies.
 
 DOES NOT SCRAPE ETF RATINGS
 
+Two files:
+
+- Analyst_Rating.py, which is used to scrape websites and create a pandas dataframe
+- plotly_Analyst_Rating.py, calls Analyst_Rating.py and creates pie charts. plotly_Analyst_Rating.py is the file you must run
+
 Websites used for scraping using BeautifulSoup:
 - swingtradebot.com
 - zacks.com
