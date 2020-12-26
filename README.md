@@ -37,4 +37,4 @@ import plotly.graph_objects as go # making a chart
 ```
 
 ## Examples of Pie Charts Shown When Program is Executed
-![](Screen Shot 2020-12-26 at 4.27.08 PM)
+![ScreenShot](tevaTest.png)
