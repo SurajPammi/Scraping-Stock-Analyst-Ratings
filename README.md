@@ -36,4 +36,4 @@ import plotly.graph_objects as go # making a chart
 ```
 
 ## Demo
-![alt](gif.gif)
+![Alt text](gif.gif) / ![](gif.gif)
