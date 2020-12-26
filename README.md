@@ -1,7 +1,7 @@
 # Scraping-Stock-Analyst-Ratings
 Written in Python.
 
-This purpose of this program is to scrape analyst ratings of a stock and displays the data using plotly.
+This purpose of this program is to scrape analyst ratings of a user given stock and displays the data using plotly.
 Analyst ratings can be used in trading strategies.
 
 Websites used for scraping using BeautifulSoup:
@@ -31,9 +31,10 @@ import pandas as pd  # Used for a data frame table to hold ratings, and analysts
 import selenium.common
 from selenium import webdriver  # To scrape JavaScript, used for Tradingview.com and TheStreet.com
 import time  # Testing time it takes for scraping
+# imports below are for plotly and are used in plotly_Analyst_Ratings.py
 from plotly.subplots import make_subplots # making multiple charts
 import plotly.graph_objects as go # making a chart
 ```
 
-## Demo
-![Alt text](gif.gif) / ![](gif.gif)
+## Examples of Pie Charts Shown When Program is Executed
+![](Screen Shot 2020-12-26 at 4.27.08 PM)
