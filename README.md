@@ -4,6 +4,8 @@ Written in Python.
 This purpose of this program is to scrape analyst ratings of a user given stock and displays the data using plotly.
 Analyst ratings can be used in trading strategies.
 
+DOES NOT SCRAPE ETF RATINGS
+
 Websites used for scraping using BeautifulSoup:
 - swingtradebot.com
 - zacks.com
@@ -37,4 +39,9 @@ import plotly.graph_objects as go # making a chart
 ```
 
 ## Examples of Pie Charts Shown When Program is Executed
-![ScreenShot](tevaTest.png)
+When the stock "teva" is entered by the user:
+[![tevaTest.png](https://i.postimg.cc/8CVzh2qG/tevaTest.png)](https://postimg.cc/v43yyNY2)
+When "aim" is entered by the user:
+[![Screen-Shot-2020-12-26-at-4-43-34-PM.png](https://i.postimg.cc/prgHP8vv/Screen-Shot-2020-12-26-at-4-43-34-PM.png)](https://postimg.cc/BPcygjt7)
+When "aaple" is entered by the user:
+[![Screen-Shot-2020-12-26-at-4-45-54-PM.png](https://i.postimg.cc/mZchWy30/Screen-Shot-2020-12-26-at-4-45-54-PM.png)](https://postimg.cc/Th6Trm49)
