@@ -20,7 +20,7 @@ Websites used for scraping using selenium (since BeautifulSoup was unable to scr
 - Thestreet.com  
 - tradingview.com 
 
-Pandas data frame was used to hold analyst ratings and the website names. The data frame was then used for pie charts that was powered by plotly. There is a pie chart for each site and a pie chart for all ratings combined. 
+Pandas data frame was used to hold analyst ratings and the website names. The data frame was then used for pie charts that were powered by plotly. There is a pie chart for each site and a pie chart for all ratings combined. 
 
 ## Dependencies
 - bs4
