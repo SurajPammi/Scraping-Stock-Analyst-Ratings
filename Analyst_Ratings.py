@@ -129,7 +129,10 @@ def initialize_selenium(link):
 
              }
     options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome("/Users/Suraj/Downloads/chromedriver", options=options)
+    try:
+      driver = webdriver.Chrome("/Users/Suraj/Downloads/chromedriver", options=options)
+    except selenium.common.exceptions.SessionNotCreatedException:
+      return False
     driver.implicitly_wait(2)
     driver.get(link)
 
@@ -142,6 +145,8 @@ def thestreet_rating(ticker):
     time_start = time.time()
     ts_link = "https://www.thestreet.com/quote/" + ticker
     driver = initialize_selenium(ts_link)
+    if driver == False:
+        return False
     # Rating format on TheStreet is a grade system: A+ or B, or C+, etc
     try:
         grade = driver.find_element_by_class_name("m-market-data-quant--grade")
@@ -193,6 +198,8 @@ def tradingview_rating(ticker, exchange):
 
     tv_link = "https://www.tradingview.com/symbols/" + exchange + "-" + ticker.upper() + "/technicals/"
     driver = initialize_selenium(tv_link)
+    if driver == False:
+        return False
     try:
         line = driver.find_element_by_class_name("speedometerSignal-pyzN--tL")
     except selenium.common.exceptions.NoSuchElementException:
