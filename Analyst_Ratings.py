@@ -98,12 +98,11 @@ def swingtradebot_rating(ticker):
 
     stb_link = "https://swingtradebot.com/equities/" + str(ticker)
     soup = soup_object(stb_link)
-    # Finds where stb has its ranking on their page
-    line = str(soup.find("td", class_="text-center"))
-    if line is None:
+    # Finds where stb has its ranking on their page, removes whitespace around rating
+    rating = soup.find("td", class_="text-center").text.strip()
+    if rating is None:
         return False
     # Rating exists in this spot in the string
-    rating = line[40]
     rating = change_rating_format(rating)
     time_end = time.time()
     print("SwingTradeBot Time:", time_end - time_start)
@@ -112,31 +111,29 @@ def swingtradebot_rating(ticker):
 
 # Initializes selenium webdriver
 def initialize_selenium(link):
-    options = webdriver.ChromeOptions()
-
-    for i in range(len(SELENIUM_ARGUMENT_EFFICIENCY)):
-        options.add_argument(SELENIUM_ARGUMENT_EFFICIENCY[i])
-    # preferences for browser, 2 = block, 1 = accept
-    prefs = {"profile.managed_default_content_settings.images": 2,
-             "profile.default_content_setting_values.notifications": 2,
-             "profile.managed_default_content_settings.stylesheets": 2,
-             "profile.managed_default_content_settings.cookies": 2,
-             "profile.managed_default_content_settings.javascript": 1,
-             "profile.managed_default_content_settings.plugins": 2,
-             "profile.managed_default_content_settings.popups": 2,
-             "profile.managed_default_content_settings.geolocation": 2,
-             "profile.managed_default_content_settings.media_stream": 2,
-
-             }
-    options.add_experimental_option("prefs", prefs)
     try:
-      driver = webdriver.Chrome("/Users/Suraj/Downloads/chromedriver", options=options)
-    except selenium.common.exceptions.SessionNotCreatedException:
-      return False
-    driver.implicitly_wait(2)
-    driver.get(link)
+        options = webdriver.ChromeOptions()
+        for i in range(len(SELENIUM_ARGUMENT_EFFICIENCY)):
+            options.add_argument(SELENIUM_ARGUMENT_EFFICIENCY[i])
+        # preferences for browser, 2 = block, 1 = accept
+        prefs = {"profile.managed_default_content_settings.images": 2,
+                 "profile.default_content_setting_values.notifications": 2,
+                 "profile.managed_default_content_settings.stylesheets": 2,
+                 "profile.managed_default_content_settings.cookies": 2,
+                 "profile.managed_default_content_settings.javascript": 1,
+                 "profile.managed_default_content_settings.plugins": 2,
+                 "profile.managed_default_content_settings.popups": 2,
+                 "profile.managed_default_content_settings.geolocation": 2,
+                 "profile.managed_default_content_settings.media_stream": 2,
 
-    return driver
+                 }
+        options.add_experimental_option("prefs", prefs)
+        driver = webdriver.Chrome("/Users/Suraj/Downloads/chromedriver", options=options)
+        driver.implicitly_wait(2)
+        driver.get(link)
+        return driver
+    except selenium.common.exceptions.SessionNotCreatedException:
+        return False
 
 
 # Gets TheStreet rating based on ticker
@@ -145,7 +142,7 @@ def thestreet_rating(ticker):
     time_start = time.time()
     ts_link = "https://www.thestreet.com/quote/" + ticker
     driver = initialize_selenium(ts_link)
-    if driver == False:
+    if not driver:
         return False
     # Rating format on TheStreet is a grade system: A+ or B, or C+, etc
     try:
@@ -195,10 +192,9 @@ def wsj_ratings(ticker):
 def tradingview_rating(ticker, exchange):
     # bs does not work on this site, need selenium to access data
     time_start = time.time()
-
     tv_link = "https://www.tradingview.com/symbols/" + exchange + "-" + ticker.upper() + "/technicals/"
     driver = initialize_selenium(tv_link)
-    if driver == False:
+    if not driver:
         return False
     try:
         line = driver.find_element_by_class_name("speedometerSignal-pyzN--tL")
