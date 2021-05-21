@@ -42,6 +42,10 @@ import time  # Testing time it takes for scraping
 from plotly.subplots import make_subplots # making multiple charts
 import plotly.graph_objects as go # making a chart
 ```
+On line 131 you need to specify where your chromedriver is located
+``` python
+driver = webdriver.Chrome("/Users/Suraj/Downloads/chromedriver", options=options)
+```
 
 ## Examples of Pie Charts Shown When Program is Executed
 When the stock "teva" is entered by the user:
