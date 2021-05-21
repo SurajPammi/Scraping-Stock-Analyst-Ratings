@@ -111,4 +111,4 @@ if __name__ == "__main__":
             break
 
     figure_totals.update_layout(title_text="Analyst Ratings")
-    figure_totals.show(renderer='browser')
+    figure_totals.show(renderer='chrome')
